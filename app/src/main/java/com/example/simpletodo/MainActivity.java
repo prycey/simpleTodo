@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -31,10 +32,19 @@ public class MainActivity extends AppCompatActivity {
         items = new ArrayList<>();
         items.add("walk");
         items.add("dance");
-        ItemsAdapter itemsAdapter = new ItemsAdapter(items);
+        final ItemsAdapter itemsAdapter = new ItemsAdapter(items);
         list.setAdapter(itemsAdapter);
         list.setLayoutManager(new LinearLayoutManager(this));
 
+        Add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String todoitem = Task.getText().toString();
+                items.add(todoitem);
+                itemsAdapter.notifyItemInserted(items.size()-1);
+                Task.setText("");
+            }
+        });
 
 
     }
