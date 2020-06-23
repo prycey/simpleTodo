@@ -35,5 +35,7 @@ public class MainActivity extends AppCompatActivity {
         list.setAdapter(itemsAdapter);
         list.setLayoutManager(new LinearLayoutManager(this));
 
+
+
     }
 }

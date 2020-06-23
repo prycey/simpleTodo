@@ -38,6 +38,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.viewHolder>{
     TextView tvItem;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
+            this.tvItem = itemView.findViewById(android.R.id.text1);
         }
 
         public void bind(String item) {
