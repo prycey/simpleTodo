@@ -16,15 +16,20 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.viewHolder>{
     public interface OnLongClickListener{
         void onItemLongClicked(int position);
     }
+    public interface OnClickListener{
+        void onItemClicked(int position);
+    }
     //items is the collection that is adapted to rview
     List<String> items;
     //on click listener
     OnLongClickListener longClickListener;
+   OnClickListener ClickListener;
 
     //this method initialize a ItemAdapter
-    public ItemsAdapter(List<String> items,OnLongClickListener longClickListner){
+    public ItemsAdapter(List<String> items,OnLongClickListener longClickListner,  OnClickListener ClickListener){
         this.items = items;
         this.longClickListener = longClickListner;
+        this.ClickListener = ClickListener;
     }
 
     //creates a view holder to hold new item
@@ -56,6 +61,12 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.viewHolder>{
         //binds the text to a listener
         public void bind(String item) {
             tvItem.setText(item);
+            tvItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ClickListener.onItemClicked(getAdapterPosition());
+                }
+            });
             tvItem.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
